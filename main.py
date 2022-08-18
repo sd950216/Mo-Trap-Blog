@@ -86,9 +86,9 @@ class Message(db.Model, Base):
 
 def sendmail(msg):
     """sends a mail for a specific person """
-    my_email = "motrappentesting@gmail.com"
-    my_pass = "vhtmwnwwdhgqidmv"
-    receiver = "meen79508@gmail.com"
+    my_email = os.environ.get('my_email')
+    my_pass = os.environ.get('my_pass')
+    receiver = os.environ.get('receiver')
     connection = smtplib.SMTP("smtp.gmail.com")
     connection.starttls()
     connection.login(user=my_email, password=my_pass)
