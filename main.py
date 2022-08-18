@@ -28,7 +28,9 @@ login_manager = LoginManager()
 login_manager.init_app(app)
 
 # CONNECT TO DB
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL'].replace('postgres://', 'postgresql://')
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://ngxkkszrehgizp:8d9c3c01656ab8c63ca30b2991' \
+                                        '92e95b4568d9a5807f0567d9c68da68e4a6d3d@ec2-54-86-10' \
+                                        '6-48.compute-1.amazonaws.com:5432/dffo4soie5sg51'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
