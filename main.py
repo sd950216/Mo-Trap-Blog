@@ -1,4 +1,4 @@
-import smtplib
+import smtplib,os
 from datetime import date
 from functools import wraps
 
@@ -17,7 +17,7 @@ from forms import CreatePostForm, RegisterForm, LoginForm, CommentForm
 Base = declarative_base()
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = '8BYkEfBA6O6donzWlSihBXox7C0sKR6b'
+app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
 ckeditor = CKEditor(app)
 Bootstrap(app)
 gravatar = Gravatar(app, size=100, rating='g', default='retro', force_default=False,
@@ -28,7 +28,7 @@ login_manager = LoginManager()
 login_manager.init_app(app)
 
 # CONNECT TO DB
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://uqqiohxllyzzok:6667d87c670ecbd88602b7627b73bb86bac16e1a2549dcc83e7aab634ac594a0@ec2-44-206-137-96.compute-1.amazonaws.com:5432/dakr7abvn07rjc'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://pyangqstklegvn:25fe7691b2b0fd94771d7698adb71d49038f1fc7c8836376379256f3257bf176@ec2-54-86-106-48.compute-1.amazonaws.com:5432/d6i8srfm83fk0r'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
