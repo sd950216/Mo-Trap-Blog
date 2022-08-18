@@ -89,6 +89,8 @@ class Message(db.Model, Base):
 
 def sendmail(msg):
     """sends a mail for a specific person """
+    username = "anonymous"
+    post_id = None
     my_email = os.environ.get('my_email')
     my_pass = os.environ.get('my_pass')
     receiver = os.environ.get('receiver')
@@ -102,8 +104,11 @@ def sendmail(msg):
             f" \n email: {msg['email']}\n msg: {msg['message']} "
 
     )
-    message = Message(name=msg['name'], username=current_user.username, phone=msg['phone'],
-                      email=msg['email'], message=msg['message'], poster_id=current_user.id)
+    if current_user.is_authenticated:
+        username = current_user.username
+        post_id = current_user.id
+    message = Message(name=msg['name'], username=username, phone=msg['phone'],
+                      email=msg['email'], message=msg['message'], poster_id=post_id)
     db.session.add(message)
     db.session.commit()
     connection.close()
