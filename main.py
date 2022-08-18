@@ -1,8 +1,9 @@
-import smtplib,os
+import os
+import smtplib
 from datetime import date
 from functools import wraps
 
-from flask import Flask, render_template, redirect, url_for, flash, request, abort
+from flask import Flask, render_template, redirect, url_for, flash, request
 from flask_bootstrap import Bootstrap
 from flask_ckeditor import CKEditor
 from flask_gravatar import Gravatar
@@ -28,7 +29,9 @@ login_manager = LoginManager()
 login_manager.init_app(app)
 
 # CONNECT TO DB
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://pyangqstklegvn:25fe7691b2b0fd94771d7698adb71d49038f1fc7c8836376379256f3257bf176@ec2-54-86-106-48.compute-1.amazonaws.com:5432/d6i8srfm83fk0r'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://pyangqstklegvn:25fe7691b2b0fd94771d7698ad' \
+                                        'b71d49038f1fc7c8836376379256f3257bf176@ec2-54-86-106-48' \
+                                        '.compute-1.amazonaws.com:5432/d6i8srfm83fk0r'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
