@@ -173,8 +173,8 @@ def show_post(post_id):
             flash('Thanks for commenting!')
             return redirect(url_for('show_post', post_id=post_id))
         else:
-            flash('Error: All fields are required.')
-            return render_template('post.html', form=form)
+            flash('Error: Empty comment.')
+            return render_template('post.html', form=form,post=requested_post, comments=comments)
 
     return render_template("post.html", post=requested_post, form=form, comments=comments)
 
