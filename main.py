@@ -185,7 +185,7 @@ def login():
     form = LoginForm(request.form)
     if request.method == 'POST':
         if form.validate_on_submit():
-            user = User.query.filter_by(email=form.email.data).first()
+            user = User.query.filter_by(email=form.email.data.replace(" ","")).first()
             if user:
                 if check_password_hash(user.password, form.password.data):
                     login_user(user)
@@ -212,8 +212,8 @@ def register():
                 flash('Email address already registered.')
                 return redirect(url_for('register'))
             user = User()
-            user.username = form.username.data
-            user.email = form.email.data
+            user.username = form.username.data.replace(" ","")
+            user.email = form.email.data.replace(" ","")
             user.password = generate_password_hash(form.password.data)
             db.session.add(user)
             db.session.commit()
